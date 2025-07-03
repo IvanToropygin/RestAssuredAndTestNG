@@ -36,4 +36,13 @@ public class BookValidatableResponse {
         Assert.assertEquals(new Book(model), expected);
         return this;
     }
+
+    public BookValidatableResponse checkId(Integer id) {
+        response.then().body("id", Matchers.equalTo(id));
+        return this;
+    }
+
+    public Integer getId() {
+        return response.jsonPath().get("id");
+    }
 }

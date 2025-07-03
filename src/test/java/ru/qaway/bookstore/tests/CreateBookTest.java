@@ -1,10 +1,10 @@
 package ru.qaway.bookstore.tests;
 
-import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.rest.client.TestClient;
-import ru.qaway.bookstore.tests.rest.model.request.Book;
 import ru.qaway.bookstore.tests.rest.enums.Category;
+import ru.qaway.bookstore.tests.rest.model.request.Book;
+import ru.qaway.bookstore.tests.rest.model.responce.BookValidatableResponse;
 
 public class CreateBookTest {
 
@@ -19,11 +19,17 @@ public class CreateBookTest {
                 10,
                 Category.Adventures);
 
-        TestClient testClient = new TestClient();
+        TestClient client = new TestClient();
 
-        testClient.create(book)
+        BookValidatableResponse response = client.create(book)
                 .checkStatusCode(201)
                 .checkIdNotNull()
+                .checkLastUpdated()
+                .checkBook(book);
+
+        client.read(response.getId())
+                .checkStatusCode(200)
+                .checkId(response.getId())
                 .checkLastUpdated()
                 .checkBook(book);
     }
