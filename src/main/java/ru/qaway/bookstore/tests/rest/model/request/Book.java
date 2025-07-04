@@ -1,8 +1,10 @@
 package ru.qaway.bookstore.tests.rest.model.request;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import ru.qaway.bookstore.tests.rest.enums.Category;
 
+@Accessors(chain = true)
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -25,5 +27,15 @@ public class Book {
         this.price = book.price;
         this.count = book.count;
         this.category = book.category;
+    }
+
+    public static Book defaultOf() {
+        return new Book(
+                "The Adventures of Tom Sawyer",
+                "The story about Tom Sawyer.",
+                "Mark Twain",
+                350,
+                10,
+                Category.Adventures);
     }
 }

@@ -1,4 +1,4 @@
-package ru.qaway.bookstore.tests.rest.model.request;
+package ru.qaway.bookstore.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
