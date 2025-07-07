@@ -57,4 +57,17 @@ public class TestClient {
 
         return new BookValidatableResponse(response);
     }
+
+    public BookValidatableResponse update(Integer bookId, Book updateBook) {
+
+        Response response = getRequestSpec(updateBook)
+                .when()
+                .put("/books/{bookId}", bookId);
+
+        response
+                .then()
+                .log().all();
+
+        return new BookValidatableResponse(response);
+    }
 }
