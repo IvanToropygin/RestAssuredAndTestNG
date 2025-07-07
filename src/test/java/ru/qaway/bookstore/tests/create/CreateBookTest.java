@@ -1,6 +1,7 @@
-package ru.qaway.bookstore.tests;
+package ru.qaway.bookstore.tests.create;
 
 import org.testng.annotations.Test;
+import ru.qaway.bookstore.tests.BookStoreTestBase;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
 import ru.qaway.bookstore.tests.rest.model.request.BookData;
 import ru.qaway.bookstore.tests.rest.model.response.BookValidatableResponse;

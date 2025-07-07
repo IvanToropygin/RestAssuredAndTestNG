@@ -1,12 +1,12 @@
-package ru.qaway.bookstore.tests;
+package ru.qaway.bookstore.tests.update;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.qaway.bookstore.tests.BookStoreTestBase;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
 import ru.qaway.bookstore.tests.rest.model.request.BookData;
-import ru.qaway.bookstore.tests.rest.model.response.BookResponse;
 
-public class UpdateBookNegativeTest extends BookStoreTestBase {
+public class UpdateBookTest extends BookStoreTestBase {
 
     private Integer id;
 
@@ -18,17 +18,18 @@ public class UpdateBookNegativeTest extends BookStoreTestBase {
                 .getId();
     }
 
-    @Test(dataProvider = "booksNegative", dataProviderClass = BookData.class)
-    public void testUpdateBookNegative(Book updateBook) {
+    @Test(dataProvider = "positive", dataProviderClass = BookData.class)
+    public void testUpdateBook(Book updateBook) {
 
         testClient.update(id, updateBook)
-                .checkStatusCode(400)
-                .checkErrorResponse(BookResponse.updateError400(id));
+                .checkStatusCode(200)
+                .checkId(id)
+                .checkLastUpdated()
+                .checkBook(updateBook);
 
         testClient.read(id)
                 .checkStatusCode(200)
                 .checkId(id)
-                .checkLastUpdated()
-                .checkBook(Book.defaultOf());
+                .checkBook(updateBook);
     }
 }

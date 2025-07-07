@@ -70,4 +70,17 @@ public class TestClient {
 
         return new BookValidatableResponse(response);
     }
+
+    public BookValidatableResponse delete(Integer bookId) {
+
+        Response response = getRequestSpec()
+                .when()
+                .delete("/books/{bookId}", bookId);
+
+        response
+                .then()
+                .log().all();
+
+        return new BookValidatableResponse(response);
+    }
 }
