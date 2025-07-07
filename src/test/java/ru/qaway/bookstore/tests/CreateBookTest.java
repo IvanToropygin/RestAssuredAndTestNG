@@ -3,11 +3,11 @@ package ru.qaway.bookstore.tests;
 import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
 import ru.qaway.bookstore.tests.rest.model.request.BookData;
-import ru.qaway.bookstore.tests.rest.model.responce.BookValidatableResponse;
+import ru.qaway.bookstore.tests.rest.model.response.BookValidatableResponse;
 
 public class CreateBookTest extends BookStoreTestBase {
 
-    @Test(dataProvider = "createBooksPositive", dataProviderClass = BookData.class)
+    @Test(dataProvider = "positive", dataProviderClass = BookData.class)
     public void testCreateBook(Book book) {
 
         BookValidatableResponse response = testClient.create(book)

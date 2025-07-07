@@ -6,7 +6,7 @@ import io.restassured.specification.RequestSpecification;
 import lombok.AllArgsConstructor;
 import ru.qaway.bookstore.tests.props.TestConfig;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
-import ru.qaway.bookstore.tests.rest.model.responce.BookValidatableResponse;
+import ru.qaway.bookstore.tests.rest.model.response.BookValidatableResponse;
 
 import static io.restassured.RestAssured.given;
 

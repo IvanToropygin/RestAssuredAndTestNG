@@ -6,8 +6,8 @@ import ru.qaway.bookstore.tests.rest.enums.Category;
 
 public class BookData {
 
-    @DataProvider(name = "createBooksPositive")
-    public static Object[][] createBooksPositive() {
+    @DataProvider(name = "positive")
+    public static Object[][] booksPositive() {
 
         return new Object[][]{
                 {Book.defaultOf()},
@@ -33,6 +33,31 @@ public class BookData {
                 {Book.defaultOf().setCategory(Category.Horror)},
                 // categories from enum: Thriller
                 {Book.defaultOf().setCategory(Category.Thriller)},
+        };
+    }
+
+    @DataProvider
+    public static Object[][] booksNegative() {
+        return new Object[][]{
+                // title < min = 2
+                {Book.defaultOf().setTitle(RandomStringUtils.randomAlphabetic(2))},
+                // title > max = 257
+                {Book.defaultOf().setTitle(RandomStringUtils.randomAlphabetic(257))},
+                // description < min = 2
+                {Book.defaultOf().setDescription(RandomStringUtils.randomAlphabetic(2))},
+                // description > max = 513
+                {Book.defaultOf().setDescription(RandomStringUtils.randomAlphabetic(513))},
+                // author < min = 2
+                {Book.defaultOf().setAuthor(RandomStringUtils.randomAlphabetic(2))},
+                // author > max = 101
+                {Book.defaultOf().setAuthor(RandomStringUtils.randomAlphabetic(101))},
+                // price < min = -1
+                {Book.defaultOf().setPrice(-1)},
+                // count > max = 101
+                {Book.defaultOf().setCount(-1)},
+                // count > max = 101
+                {Book.defaultOf().setCategory(Category.UnKnown)},
+
         };
     }
 }

@@ -1,4 +1,4 @@
-package ru.qaway.bookstore.tests.rest.model.responce;
+package ru.qaway.bookstore.tests.rest.model.response;
 
 import io.restassured.response.Response;
 import lombok.SneakyThrows;
@@ -47,7 +47,10 @@ public class BookValidatableResponse {
     }
 
     public BookValidatableResponse checkErrorResponse(BookResponse expected) {
-        response.then().body("timestamp", Matchers.notNullValue());
+        response
+                .then()
+                .body("timestamp", Matchers.notNullValue());
+
         Assert.assertEquals(model, expected);
         return this;
     }
